@@ -1,6 +1,6 @@
 models:
   - name: dim_listings_cleansed
-    description: Cleansed table wihich contains Aribnb listings.
+    description: Cleansed table wihich contains Airbnb listings.
     data_tests:
       - minimum_row_count:
           severity: warn
@@ -36,22 +36,27 @@ models:
           - positive_values
 
   - name: dim_hosts_cleansed
+    description: Cleansed table which contains Airbnb hosts.
     config:
       contract:
         enforced: true
+
     columns:
       - name: host_id
+        description: Primary key for the host.
         data_type: integer
         data_tests:
           - unique
           - not_null
 
       - name: host_name
+        description: Name of the host.
         data_type: string
         data_tests:
           - not_null
 
       - name: is_superhost
+        description: Is the host classified as a superhost?
         data_type: string
         data_tests:
           - accepted_values:
@@ -59,7 +64,9 @@ models:
                 values: ['t', 'f']
 
       - name: created_at
+        description: Timestamp, when the row has been created.
         data_type: timestamp
 
       - name: updated_at
+        description: Timestamp, when the row has been updated last time.
         data_type: timestamp
