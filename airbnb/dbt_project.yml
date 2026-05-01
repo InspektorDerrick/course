@@ -40,7 +40,9 @@ models:
     +materialized: view
     +post-hook:
       - "INSERT INTO audit_log VALUES ('{{ this }}', CURRENT_TIMESTAMP)"
-    
+    +grants:
+      select: ["transform", "reporter"]
+
     src:
       +materialized: ephemeral
     dim:
